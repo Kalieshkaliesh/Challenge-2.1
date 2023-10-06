@@ -1,0 +1,47 @@
+# Define the BankAccount class
+class BankAccount:
+    # Initialize the attributes for account number, account holder name, and account balance
+    def __init__(self, number, name, balance):
+        self.__number = number # Use double underscore to make the attribute private
+        self.__name = name # Use double underscore to make the attribute private
+        self.__balance = balance # Use double underscore to make the attribute private
+
+    # Define a method to deposit money
+    def deposit(self, amount):
+        # Check if the amount is positive
+        if amount > 0:
+            # Add the amount to the balance
+            self.__balance += amount
+            # Print a confirmation message
+            print(f"Rs. {amount} deposited successfully. New balance is Rs. {self.__balance}")
+        else:
+            # Print an error message
+            print("Invalid amount. Deposit failed.")
+
+    # Define a method to withdraw money
+    def withdraw(self, amount):
+        # Check if the amount is positive and less than or equal to the balance
+        if amount > 0 and amount <= self.__balance:
+            # Subtract the amount from the balance
+            self.__balance -= amount
+            # Print a confirmation message
+            print(f"Rs. {amount} withdrawn successfully. New balance is Rs. {self.__balance}")
+        else:
+            # Print an error message
+            print("Invalid amount or insufficient balance. Withdrawal failed.")
+
+    # Define a method to display the account balance
+    def display_balance(self):
+        # Print the balance with formatting
+        print(f"The balance of account {self.__number} is Rs. {self.__balance:.2f}")
+
+# Create an instance of the BankAccount class with some initial values
+account = BankAccount(1234567890, "Rajesh Kumar", 50000)
+
+# Test the deposit and withdrawal functionality
+account.deposit(10000) # Deposit Rs. 10000
+account.withdraw(15000) # Withdraw Rs. 15000
+account.display_balance() # Display the balance
+
+# Try to access the account balance directly from outside the class (should raise an error)
+print(account.__balance)
